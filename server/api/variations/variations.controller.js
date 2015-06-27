@@ -37,8 +37,7 @@ exports.create = function(req, res, next) {
       name: fields.name[0],
       description: fields.description[0],
       filename: files.file[0] ? files.file[0].path : '',
-      //userId: req.user.id,
-      userId: null
+      userId: req.user.id,
     });
     modelFile.save(function(err) {
       if (err) res.send(500, err);
