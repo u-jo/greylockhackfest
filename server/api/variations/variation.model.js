@@ -8,6 +8,7 @@ var VariationSchema = new Schema({
   name: String,
   description: String,
   filename: String,
+  experimentId: Schema.Types.ObjectId,
 });
 
 module.exports = mongoose.model('Variation', VariationSchema);

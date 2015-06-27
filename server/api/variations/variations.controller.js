@@ -33,11 +33,17 @@ exports.create = function(req, res, next) {
         message: 'Missing fields: ' + missing.join(', ')
       });
     }
+    if (!_.has(req.query, 'experiment')) {
+      return res.status(400).send({
+        message: 'Missing query param: experiment',
+      });
+    }
     var modelFile = new Variation({
       name: fields.name[0],
       description: fields.description[0],
       filename: files.file[0] ? files.file[0].path : '',
       userId: req.user.id,
+      experimentId: req.query.experiment,
     });
     modelFile.save(function(err) {
       if (err) res.send(500, err);
