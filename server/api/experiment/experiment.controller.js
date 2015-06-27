@@ -5,7 +5,9 @@ var Experiment = require('./experiment.model');
 
 // Get list of experiments
 exports.index = function(req, res) {
-  Experiment.find(function (err, experiments) {
+  Experiment.find({
+    userId: req.user.id
+  }, function (err, experiments) {
     if(err) { return handleError(res, err); }
     return res.json(200, experiments);
   });
