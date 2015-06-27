@@ -3,7 +3,7 @@ public
 .tmp
 .sass-cache
 .idea
-client/bower_components
+/client/bower_components
 dist
 /server/config/local.env.js
 client/app/app.scss
