@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('greylock20152App')
-  .controller('MerchantCreateCtrl', function ($scope, Auth, Upload) {
+  .controller('MerchantUpdateCtrl', function ($scope, Auth, Upload, $stateParams) {
+    console.log($stateParams);
     $scope.experiments = [];
     $scope.addExperiment = function() {
       $scope.experiments.push({

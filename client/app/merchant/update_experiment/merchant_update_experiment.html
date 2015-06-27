@@ -1,0 +1,53 @@
+<div class="container">
+	<div class="row" >
+		<form class="form-horizontal experiment-form">
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">Experiment Name</label>
+		    <div class="col-sm-8">
+		      <input type="text" class="form-control" ng-model="projectName" placeholder="Project Name">
+		    </div>
+		    <div class="col-sm-2">
+		    	<button type="button" class="btn btn-default" ng-click="addExperiment()">Add Variation</button>
+		    </div>
+		  </div>
+		</form>
+	</div>
+	
+	<div class="row" ng-if="experiments.length" ng-repeat="experiment in experiments track by $index">
+		<div class="variation-form">
+			<form class="form-horizontal">
+			  <div class="form-group">
+			    <label class="col-sm-2 control-label">Variation Name</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" ng-model="experiment.name" placeholder="Experiment Name">
+			    </div>
+			    <div class="col-sm-2">
+		    		<button type="button" class="btn btn-default" ng-click="removeExperiment($index)">Remove Variation</button>
+		    	</div>
+			  </div>
+			</form>
+			<form class="form-horizontal">
+			  <div class="form-group">
+			  	<label class="col-sm-2 control-label">
+			  		<button type="button" class="btn btn-default"
+						type="file"
+						ngf-select="true"
+						ngf-reset-on-click="true"
+						ng-model="experiment.file"
+						>
+							Select Files
+						</button>
+			  	</label>
+			  	<div class="col-sm-8">
+			  		<input style="margin-top:6px;" class="form-control" type="text" ng-model="experiment.file[0].name" placeholder="Selected File Name" readonly>
+			  	</div>
+			  </div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="row btn-controls">
+		<!-- Standard button -->
+		<button type="button" class="btn btn-default" ng-click="createExperiments()">Create Experiment</button>
+	</div>
+</div>
