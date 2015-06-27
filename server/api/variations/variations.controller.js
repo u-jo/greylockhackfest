@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var ModelFile = require('./model-file.model');
+var Variation = require('./variation.model');
 var multiparty = require('multiparty');
 
 exports.index = function(req, res) {
@@ -33,11 +33,12 @@ exports.create = function(req, res, next) {
         message: 'Missing fields: ' + missing.join(', ')
       });
     }
-    var modelFile = new ModelFile({
+    var modelFile = new Variation({
       name: fields.name[0],
       description: fields.description[0],
       filename: files.file[0] ? files.file[0].path : '',
-      userId: req.user.id,
+      //userId: req.user.id,
+      userId: null
     });
     modelFile.save(function(err) {
       if (err) res.send(500, err);
