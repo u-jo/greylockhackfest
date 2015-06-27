@@ -21,7 +21,7 @@ exports.create = function(req, res, next) {
     if (err) {
       return res.status(500).send(err);
     }
-    var missingFields = _.filter(['name', 'description'], function(k) {
+    var missingFields = _.filter(['name'], function(k) {
       return !(k in fields);
     });
     var missingFiles = _.filter(['file'], function(k) {
