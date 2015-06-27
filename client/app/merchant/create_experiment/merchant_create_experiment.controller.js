@@ -29,10 +29,14 @@ angular.module('greylock20152App')
     };
 
     $scope.upload = function(files) {
-      files.forEach(function() {
+      files.forEach(function(file) {
         Upload.upload({
-          url: '/api/model-files',
-          file: file
+          url: '/api/variations',
+          file: file,
+          fields: {
+            name: file.name,
+            description: 'file'
+          }
         }).progress(function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
