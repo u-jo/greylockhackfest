@@ -6,3 +6,5 @@ public
 client/bower_components
 dist
 /server/config/local.env.js
+client/app/app.scss
+client/index.html

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greylock20152App')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
+  .controller('SignupCtrl', function ($scope, Auth, $location, $state) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -16,7 +16,7 @@ angular.module('greylock20152App')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/');
+          $state.go('merchant');
         })
         .catch( function(err) {
           err = err.data;
