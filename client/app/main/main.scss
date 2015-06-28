@@ -28,3 +28,18 @@
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
 }
+
+.navbar.navbar-default {
+    background-color: #00688B;
+    border-bottom: none;
+    a, li > a {
+        color: white;
+    }
+    a:hover, li > a:hover {
+        color: #ccc;
+    }
+    .active > a {
+        background-color: white;
+        background: white;
+    }
+}

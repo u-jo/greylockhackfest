@@ -36,7 +36,8 @@ angular.module('greylock20152App')
     };
 
     $scope.upload = function(variations, experimentId) {
-      var masterPromise = [];
+      var masterPromise = [],
+          url = '/api/experiments/' + experimentId + '/variations'
       $scope.experiments.forEach(function(experiment) {
         var file = experiment.file[0],
             name = experiment.name,
@@ -45,7 +46,7 @@ angular.module('greylock20152App')
         masterPromise.push(deferred);
         if (name && file) {
           Upload.upload({
-            url: '/api/variations?experiment=' + experimentId,
+            url: url,
             file: file,
             fields: {
               name: name,

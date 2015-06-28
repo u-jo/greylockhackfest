@@ -18,9 +18,14 @@ angular.module('greylock20152App')
       	templateUrl: 'app/merchant/update_experiment/merchant_update_experiment.html',
         controller: 'MerchantUpdateCtrl'
       })
-      .state('merchant.view', {
+      .state('merchant.viewall', {
       	url: '/experiments',
       	templateUrl: 'app/merchant/view_experiment/view_experiments.html',
         controller: 'MerchantViewExperimentsCtrl'
-      });
+      })
+      .state('merchant.inspect', {
+        url: '/experiments/:id',
+        templateUrl: 'app/merchant/inspect_experiment/inspect_experiment.html',
+        controller: 'MerchantInspectExpCtrl'
+      });;
   });

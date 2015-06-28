@@ -1,12 +1,12 @@
 <div class="container">
-	<input type="text" class="form-control" placeholder="Search for Experiment">
+	<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search for Experiment">
 	<table class="table table-striped experiment-table">
 		<tr>
 			<th>Experiment Name</th>
 			<th>Number of Variations</th>
 			<th>Experiments held</th>
 		</tr>
-	  <tr ng-repeat="experiment in experiments">
+	  <tr ng-repeat="experiment in experiments | filter: {name: searchTerm}">
 	  	<td>{{experiment.name}}</td>
 			<td>{{experiment.variations.length}}</td>	
 			<td></td>  	

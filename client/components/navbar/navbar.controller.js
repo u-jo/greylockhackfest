@@ -22,9 +22,6 @@ angular.module('greylock20152App')
     $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.user = $scope.getCurrentUser();
-    $scope.$watch('user', function() {
-      console.log($scope.user);
-    });
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');

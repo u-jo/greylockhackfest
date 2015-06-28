@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('greylock20152App')
-  .factory('modelFileService', function ($resource) {
-    var modelFileResource = $resource('/api/model-files', {}, {
+  .factory('variationService', function ($resource) {
+    var variationResource = $resource('/api/variations', {}, {
       uploadModel: {
-        method: 'POST'
+        method: 'POST',
+        url: '/api/variations/:experimentId/variations'
       }
     });
 
-    return modelFileResource;
+    return variationResource;
   });
