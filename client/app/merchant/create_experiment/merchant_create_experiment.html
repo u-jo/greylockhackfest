@@ -10,6 +10,32 @@
 		    	<button type="button" class="btn btn-default" ng-click="addExperiment()">Add Variation</button>
 		    </div>
 		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label">Metrics</label>
+			
+		    <div class="col-sm-8">
+				<label>
+					<input ng-model="heatMap3D.tracking"  type="checkbox"> 3D Heatmap
+				</label>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-8">
+				<label>
+					<input ng-model="heatMap2D.tracking" type="checkbox"> 2D Heatmap
+				</label>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-6">
+				<label>
+					<input ng-model="trackGoal.tracking" type="checkbox"> Track a particular goal
+				</label>
+				<textarea ng-if="trackGoal.tracking" rows="3" type="text" class="form-control span12 goal-text" placeholder="Prompt for user" ng-model="trackGoal.description"></textarea>
+		    </div>
+
+		  </div>
+
 		</form>
 	</div>
 	

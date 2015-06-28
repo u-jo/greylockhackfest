@@ -26,7 +26,7 @@ angular.module('greylock20152App')
         })
         .then( function() {
           // Account created, redirect to home
-          $state.go('merchant');
+          $state.go('merchant.viewall');
         })
         .catch( function(err) {
           err = err.data;

@@ -15,7 +15,7 @@ angular.module('greylock20152App')
         })
         .then( function() {
           // Logged in, redirect to home
-          $state.go('merchant');
+          $state.go('merchant.viewall');
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

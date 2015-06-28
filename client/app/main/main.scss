@@ -32,7 +32,7 @@
 .navbar.navbar-default {
     background-color: #00688B;
     border-bottom: none;
-    a, li > a {
+    a, li > a, li > p {
         color: white;
     }
     a:hover, li > a:hover {
@@ -42,4 +42,12 @@
         background-color: white;
         background: white;
     }
+}
+
+.navbar-default .navbar-nav > .active > a {
+    background-color: white;
+}
+
+.goal-text {
+    margin-top: 10px;
 }

@@ -8,6 +8,7 @@ var ExperimentSchema = new Schema({
   description: String,
   variations: [{type: Schema.Types.ObjectId, ref: 'Variation'}],
   userId: Schema.Types.ObjectId,
+  metrics: Object
 });
 
 module.exports = mongoose.model('Experiment', ExperimentSchema);

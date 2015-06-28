@@ -7,6 +7,20 @@ angular.module('greylock20152App')
     $scope.experiment = {
       name: ''
     }
+
+    $scope.heatMap2D = {
+      name: 'Create 2D Heat Map',
+      tracking: true
+    };
+    $scope.heatMap3D = {
+      name: 'Create 3D Heat Map',
+      tracking: true
+    };
+    $scope.trackGoal = {
+      name: 'Track time taken',
+      tracking: false,
+      description: ''
+    };
     $scope.addExperiment = function() {
       $scope.experiments.push({
         name: '',
@@ -28,7 +42,12 @@ angular.module('greylock20152App')
       experimentService.createDocument({
         name: $scope.experiment.name,
         userId: $scope.currentUser._id,
-        description: ''
+        description: '',
+        metrics: {
+          heatmap2d: $scope.heatMap2D,
+          heatmap3d: $scope.heatMap2D,
+          trackGoal: $scope.trackGoal
+        }
       }, function(experiment) { 
         var experimentId = experiment._id;
         $scope.upload($scope.experiments, experimentId);
@@ -63,7 +82,7 @@ angular.module('greylock20152App')
       });
 
       $q.all(masterPromise).then(function() {
-        $state.go('merchant.view');
+        $state.go('merchant.viewall');
       });
     };
   });

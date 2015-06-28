@@ -25,7 +25,6 @@ angular.module('greylock20152App')
           password: user.password
         }).
         success(function(data) {
-          console.log(data);
           $cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);

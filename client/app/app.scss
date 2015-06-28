@@ -27,3 +27,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 body {
   font-family: 'Lato', sans-serif !important;
 }
+
+.navbar-default .navbar-nav > .active > a {
+    background-color: white;
+}

@@ -7,7 +7,8 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
-
+var Experiment = require('../api/experiment/experiment.model');
+var Variation = require('../api/variations/variation.model');
 Thing.find({}).remove(function() {
   Thing.create({
     name : 'Development Tools',
@@ -36,7 +37,8 @@ User.find({}).remove(function() {
     name: 'Test User',
     email: 'test@test.com',
     password: 'test',
-    userRole: 'merchant'
+    userRole: 'merchant',
+    role: 'user'
   }, {
     provider: 'local',
     role: 'admin',
@@ -47,4 +49,12 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Variation.find({}).remove(function() {
+
+});
+
+Experiment.find({}).remove(function() {
+
 });

@@ -31,6 +31,7 @@ exports.create = function(req, res) {
     description: req.body.description,
     variations: [],
     userId: req.user.id,
+    metrics: req.body.metrics
   }, function(err, experiment) {
     if(err) { return handleError(res, err); }
     return res.json(201, experiment);
