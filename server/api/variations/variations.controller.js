@@ -47,7 +47,7 @@ exports.showFile = function(clientMode) {
         zip.file(genFilePath('variation-info'), JSON.stringify(variation));
         if (clientMode && variation.data) {
           _.each(_.keys(variation.data), function(key) {
-            zip.file(genFilePath(key), variation.data[key])
+            zip.file(genFilePath(key), JSON.stringify(variation.data[key]))
           });
         }
         zip.file(genFilePath('mode'), clientMode ? 'client' : 'user');
