@@ -9,18 +9,22 @@ var fs = require('fs');
 var async = require('async');
 
 exports.index = function(req, res) {
-  Variation.find({experimentId: req.experiment._id}, function(err, variations) {
+  Variation.find({experimentId: req.experiment._id})
+  .populate('reports')
+  .exec(function(err, variations) {
     if (err) { return handleError(res, err); }
     return res.json(200, variations);
   });
 };
 
 exports.show = function(req, res) {
-  Variation.findById(req.params.id, function (err, variation) {
-    if (err) { return handleError(res, err); }
-    if (!variation) { return res.send(404); }
-    return res.json(variation);
-  });
+  Variation.findById(req.params.id)
+    .populate('reports')
+    .exec(function (err, variation) {
+      if (err) { return handleError(res, err); }
+      if (!variation) { return res.send(404); }
+      return res.json(variation);
+    });
 };
 
 exports.showFile = function(req, res) {
