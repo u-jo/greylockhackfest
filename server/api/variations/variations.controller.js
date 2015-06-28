@@ -41,13 +41,12 @@ exports.showFile = function(req, res) {
       };
       zip.file(genFilePath('variation-info'), JSON.stringify(variation));
       var userOwned = req.user && req.user._id.equals(variation.userId);
-      console.log('showFile', userOwned, variation.data);
-      console.log(req.user, variation.userId);
       if (userOwned && variation.data) {
         _.each(_.keys(variation.data), function(key) {
           zip.file(genFilePath(key), variation.data[key])
         });
       }
+      zip.file(genFilePath('mode'), userOwned ? 'client' : 'user');
       var out = zip.generate({type: 'string'});
       return res.send(new Buffer(out, 'binary'));
     });
