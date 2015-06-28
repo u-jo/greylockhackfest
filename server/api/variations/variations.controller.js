@@ -45,7 +45,7 @@ exports.showFile = function(req, res) {
       console.log(req.user, variation.userId);
       if (userOwned && variation.data) {
         _.each(_.keys(variation.data), function(key) {
-          zip.file(genFilePath(key), JSON.stringify(variation.data[key]))
+          zip.file(genFilePath(key), variation.data[key])
         });
       }
       var out = zip.generate({type: 'string'});
