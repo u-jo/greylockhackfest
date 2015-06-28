@@ -10,8 +10,8 @@ var router = express.Router({mergeParams: true});
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.post('/:id', controller.update);
-router.get('/:id/download', controller.showFile);
-router.get('/:id/zip', auth.attachUser(), controller.showFile);
+router.get('/:id/download', controller.showFile(false));
+router.get('/:id/zip', controller.showFile(true));
 router.post('/', auth.isAuthenticated(), controller.create);
 router.use('/:variationId/reports/', function(req, res, next) {
   Variation.findById(req.params.variationId, function(err, variation) {

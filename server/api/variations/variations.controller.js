@@ -27,34 +27,35 @@ exports.show = function(req, res) {
     });
 };
 
-exports.showFile = function(req, res) {
-  Variation.findById(req.params.id, function (err, variation) {
-    if (err) { return handleError(res, err); }
-    if (!variation) { return res.send(404); }
-    fs.readFile(variation.filename, function(err, data) {
-      var zip = new JSZip(data);
-      var dataFolders = zip.folder(/_Data\/$/);
-      if (_.isEmpty(dataFolders)) {
-        return res.json(500, {
-          message: 'could not inject data into resources folder'
-        });
-      }
-      var folder = dataFolders[0].name;
-      var genFilePath = function(filename) {
-        return [folder, filename + '.txt'].join('/')
-      };
-      zip.file(genFilePath('variation-info'), JSON.stringify(variation));
-      var userOwned = req.user && req.user._id.equals(variation.userId);
-      if (userOwned && variation.data) {
-        _.each(_.keys(variation.data), function(key) {
-          zip.file(genFilePath(key), variation.data[key])
-        });
-      }
-      zip.file(genFilePath('mode'), userOwned ? 'client' : 'user');
-      var out = zip.generate({type: 'string'});
-      return res.send(new Buffer(out, 'binary'));
+exports.showFile = function(clientMode) {
+  return function(req, res) {
+    Variation.findById(req.params.id, function (err, variation) {
+      if (err) { return handleError(res, err); }
+      if (!variation) { return res.send(404); }
+      fs.readFile(variation.filename, function(err, data) {
+        var zip = new JSZip(data);
+        var dataFolders = zip.folder(/_Data\/$/);
+        if (_.isEmpty(dataFolders)) {
+          return res.json(500, {
+            message: 'could not inject data into resources folder'
+          });
+        }
+        var folder = dataFolders[0].name;
+        var genFilePath = function(filename) {
+          return [folder, filename + '.txt'].join('/')
+        };
+        zip.file(genFilePath('variation-info'), JSON.stringify(variation));
+        if (clientMode && variation.data) {
+          _.each(_.keys(variation.data), function(key) {
+            zip.file(genFilePath(key), variation.data[key])
+          });
+        }
+        zip.file(genFilePath('mode'), clientMode ? 'client' : 'user');
+        var out = zip.generate({type: 'string'});
+        return res.send(new Buffer(out, 'binary'));
+      });
     });
-  });
+  };
 };
 
 exports.create = function(req, res, next) {
