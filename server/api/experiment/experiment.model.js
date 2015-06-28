@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var ExperimentSchema = new Schema({
   name: String,
   description: String,
-  variations: [Schema.Types.ObjectId],
+  variations: [{type: Schema.Types.ObjectId, ref: 'Variation'}],
   userId: Schema.Types.ObjectId,
 });
 

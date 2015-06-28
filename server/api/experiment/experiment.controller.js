@@ -5,21 +5,23 @@ var Experiment = require('./experiment.model');
 
 // Get list of experiments
 exports.index = function(req, res) {
-  Experiment.find({
-    //userId: req.user.id
-  }, function (err, experiments) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, experiments);
-  });
+  Experiment.find()
+    .populate('variations')
+    .exec(function (err, experiments) {
+      if(err) { return handleError(res, err); }
+      return res.json(200, experiments);
+    });
 };
 
 // Get a single experiment
 exports.show = function(req, res) {
-  Experiment.findById(req.params.id, function (err, experiment) {
-    if(err) { return handleError(res, err); }
-    if(!experiment) { return res.send(404); }
-    return res.json(experiment);
-  });
+  Experiment.findById(req.params.id)
+    .populate('variations')
+    .exec(function (err, experiment) {
+      if(err) { return handleError(res, err); }
+      if(!experiment) { return res.send(404); }
+      return res.json(experiment);
+    });
 };
 
 // Creates a new experiment in the DB.
