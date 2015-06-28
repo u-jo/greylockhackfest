@@ -9,6 +9,7 @@ var VariationSchema = new Schema({
   description: String,
   filename: String,
   experimentId: Schema.Types.ObjectId,
+  data: Object,
 });
 
 module.exports = mongoose.model('Variation', VariationSchema);

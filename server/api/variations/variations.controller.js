@@ -95,6 +95,19 @@ exports.create = function(req, res, next) {
   });
 };
 
+exports.update = function(req, res, next) {
+  if(req.body._id) { delete req.body._id; }
+  Variation.findById(req.params.id, function (err, variation) {
+    if (err) { return handleError(res, err); }
+    if (!variation) { return res.send(404); }
+    var updated = _.merge(variation, req.body);
+    updated.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, variation);
+    });
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }

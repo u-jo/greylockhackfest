@@ -8,6 +8,7 @@ var router = express.Router({mergeParams: true});
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);
+router.post('/:id', controller.update);
 router.get('/:id/zip', controller.showFile);
 router.post('/', auth.isAuthenticated(), controller.create);
 
