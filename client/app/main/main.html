@@ -4,7 +4,7 @@
 	<div class="caption">
 		<div class="round-button">
 			<h1 style="font-size: 72px;
-  margin-bottom: 20px;">Space <span class="name-span">V</span>entu<span class="name-span">R</span>es</h1>
+  margin-bottom: 20px;">Space <span class="name-span">V</span>entu<span class="name-span">R</span>a</h1>
 			<p>Come on and explore some spaces!</p>
 			<div class="round-btn"><a href="#experiments">
 				<button type="button" class="btn btn-default round-btn">
@@ -21,20 +21,24 @@
 <div name="experiments" style="position:fixed;margin-top:50%;"></div>
 <div class="container" style="margin-top:-50px">
 	<div style="position: relative;
-  top: -100px;text-align:center;"><h1>Available Spaces</h1></div>
-	
-	<div deckgrid source="experiments" class="deckgrid">
-		<div  class="a-card">
-			<a class="clickable card" target="_self" href="{{card.fullUrl}}" download="experiment.zip">
-		        <img src="" data-ng-src="assets/images/corgi-puppy-on-a-couch.jpg" class="card-image">
-		        <div class="a-card-name">
-		        	<h3>{{card.name}}</h3>
-		        	<p>{{card.description}}</p>
-		        </div>
-		    </a>	
+  top: -350px;text-align:center;"><h1>Available Spaces</h1>
+	<p style="font-size:25px">Click on any of the spaces to download a space to experience!</p>
+</div>
+	<div class="deck-cards">
+		<div deckgrid source="experiments" class="deckgrid">
+			<div  class="a-card">
+				<a class="clickable card" target="_self" href="{{card.fullUrl}}" download="experiment.zip">
+			        <img src="" data-ng-src="{{card.picture}}" class="card-image">
+			        <div class="a-card-name">
+			        	<h3>{{card.name}}</h3>
+			        	<p>{{card.description}}</p>
+			        </div>
+			    </a>	
+			</div>
+			
 		</div>
-		
 	</div>
+	
 </div>
 
 

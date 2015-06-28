@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greylock20152App')
-  .controller('MainCtrl', function ($scope, $http, socket, availableExperiments, $timeout, $resource) {
+  .controller('MainCtrl', function ($scope, $http, socket, availableExperiments, $timeout, $resource, Auth) {
     $scope.experiments = availableExperiments.map(function(experiment) {
       var numberOfVariations = experiment.variations.length;
       var variationNumber = Math.floor(Math.random() * numberOfVariations);
@@ -10,8 +10,10 @@ angular.module('greylock20152App')
       var fullUrl = 'localhost:9000/' + url;
       experiment.url = url;
       experiment.fullUrl = url;
+      var randomPicture = Math.floor(Math.random() * 3) + 1;
+      experiment.picture = 'assets/images/' + randomPicture + '.jpg';
       return experiment;
-    });
+    }).reverse();
     $scope.downloadExperiment = function(index) {
       // var experiment = $scope.experiments[index];
       // var downloadResource = $resource(experiment.url, {});

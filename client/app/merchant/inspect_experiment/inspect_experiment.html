@@ -32,6 +32,8 @@
 					  </tr>
 					</table>	
 				</div>
+
+				
 			</div>
 		</div>
 		
@@ -67,6 +69,9 @@
 					    </div>
 					  </div>
 					</form>
+					<div class="row" style="text-align:center;" ng-if="selectedMetrics.a.name">
+						<img style="width:700px" src="assets/images/variation_1.jpg" alt="">
+					</div>
 				</div>
 				<div class="col-md-6" style="margin-top:20px;">
 					<div style="text-align:center;"><h1>Variation B</h1></div>
@@ -92,6 +97,10 @@
 				            </ui-select-choices>
 				          </ui-select>
 					    </div>
+
+					    <div class="row" ng-if="selectedMetrics.b.name">
+							<img style="width:700px;;margin-top:10px;" src="assets/images/variation_2.jpg" alt="">
+						</div>
 					  </div>
 					</form>
 				</div>
