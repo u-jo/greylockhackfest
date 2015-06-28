@@ -41,7 +41,7 @@ exports.showFile = function(req, res) {
       }
       var folder = dataFolders[0].name;
       var genFilePath = function(filename) {
-        return [folder, filename].join('/')
+        return [folder, filename + '.txt'].join('/')
       };
       zip.file(genFilePath('variation-info'), JSON.stringify(variation));
       var userOwned = req.user && req.user._id.equals(variation.userId);
