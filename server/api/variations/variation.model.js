@@ -10,6 +10,7 @@ var VariationSchema = new Schema({
   filename: String,
   experimentId: Schema.Types.ObjectId,
   data: Object,
+  reports: [{type: Schema.Types.ObjectId, ref: 'Report'}],
 });
 
 module.exports = mongoose.model('Variation', VariationSchema);
