@@ -5,6 +5,15 @@ angular.module('greylock20152App')
     $scope.user = {};
     $scope.errors = {};
 
+    $scope.roles = [{
+      name: 'Merchant',
+      value: 'merchant'
+    }, {
+      name: 'Tester',
+      value: 'user'
+    }];
+    $scope.user.role = $scope.roles[0];
+
     $scope.register = function(form) {
       $scope.submitted = true;
 
@@ -12,7 +21,8 @@ angular.module('greylock20152App')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
-          password: $scope.user.password
+          password: $scope.user.password,
+          userRole: $scope.user.role.value
         })
         .then( function() {
           // Account created, redirect to home

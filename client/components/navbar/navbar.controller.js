@@ -9,18 +9,22 @@ angular.module('greylock20152App')
     }, {
       'title': 'View Experiments',
       'link': '/merchant/experiments',
-      'role': 'user'
+      'role': 'merchant'
     }, {
       'link': '/merchant/experiments/create',
       'title': 'Create Experiment',
-      'role' : 'user'
+      'role' : 'merchant'
     }];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+
     $scope.user = $scope.getCurrentUser();
+    $scope.$watch('user', function() {
+      console.log($scope.user);
+    });
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');

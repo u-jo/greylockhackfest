@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greylock20152App')
-  .controller('MerchantCreateCtrl', function ($scope, Auth, Upload, experimentService) {
+  .controller('MerchantCreateCtrl', function ($scope, Auth, Upload, experimentService, $q, $state) {
     $scope.experiments = [];
     $scope.currentUser = Auth.getCurrentUser();
     $scope.experiment = {
@@ -36,10 +36,13 @@ angular.module('greylock20152App')
     };
 
     $scope.upload = function(variations, experimentId) {
+      var masterPromise = [];
       $scope.experiments.forEach(function(experiment) {
         var file = experiment.file[0],
             name = experiment.name,
             description = experiment.description;
+        var deferred = $q.defer();
+        masterPromise.push(deferred);
         if (name && file) {
           Upload.upload({
             url: '/api/variations?experiment=' + experimentId,
@@ -53,9 +56,13 @@ angular.module('greylock20152App')
             console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (data, status, headers, config) {
             console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+            deferred.resolve();
           });
         }
-        
+      });
+
+      $q.all(masterPromise).then(function() {
+        $state.go('merchant.view');
       });
     };
   });
