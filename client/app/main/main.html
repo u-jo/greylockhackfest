@@ -4,19 +4,13 @@
 	<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search for a spatial experience">
 
 	<div deckgrid source="experiments" class="deckgrid">
-		<div class="a-card clickable">
-			<form method="get" action="assets/images/corgi-puppy-on-a-couch.jpg">
-		        <img src="" data-ng-src="assets/images/corgi-puppy-on-a-couch.jpg" class="card-image">
-		        <div class="a-card-name">
-		        	<h3>{{card.name}}</h3>
-		        	<p>{{card.description}}</p>
-		        </div>
-	        </form>
-	    </div>
-		
-		
-		
-    	
+		<a class="a-card clickable" target="_self" href="{{card.fullUrl}}" download="experiment.zip">
+	        <img src="" data-ng-src="assets/images/corgi-puppy-on-a-couch.jpg" class="card-image">
+	        <div class="a-card-name">
+	        	<h3>{{card.name}}</h3>
+	        	<p>{{card.description}}</p>
+	        </div>
+	    </a>
 	</div>
 </div>
 

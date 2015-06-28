@@ -86,7 +86,7 @@ tabs.nav-justified > li > a, .nav-tabs.nav-justified > li > a {
     width: 100%;
 }
 
-.a-card {
+a.a-card {
     margin: 20px;
     border: 1px solid #ddd;
     .a-card-name {
@@ -99,6 +99,10 @@ tabs.nav-justified > li > a, .nav-tabs.nav-justified > li > a {
             color: #A0A0A0;
         }
     }
+}
+
+a.a-card:hover {
+    text-decoration: none;
 }
 
 .a-card:hover {

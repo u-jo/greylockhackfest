@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('greylock20152App')
-  .controller('MerchantCreateCtrl', function ($scope, Auth, Upload, experimentService, $q, $state) {
+  .controller('MerchantCreateCtrl', function ($scope, Auth, Upload, experimentService, $q, $state, $timeout) {
     $scope.experiments = [];
     $scope.currentUser = Auth.getCurrentUser();
     $scope.experiment = {
@@ -85,7 +85,10 @@ angular.module('greylock20152App')
       });
 
       $q.all(masterPromise).then(function() {
-        $state.go('merchant.viewall');
+        $timeout(function() {
+          $state.go('merchant.viewall');
+
+        }, 1000);
       });
     };
   });
