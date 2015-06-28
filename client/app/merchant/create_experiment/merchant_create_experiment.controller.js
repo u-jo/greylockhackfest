@@ -10,14 +10,17 @@ angular.module('greylock20152App')
 
     $scope.heatMap2D = {
       name: 'Create 2D Heat Map',
+      metricDescription: '2D Heat Map',
       tracking: true
     };
     $scope.heatMap3D = {
       name: 'Create 3D Heat Map',
+      metricDescription: '3D Heat Map',
       tracking: true
     };
     $scope.trackGoal = {
       name: 'Track time taken',
+      metricDescription: 'Time tracked',
       tracking: false,
       description: ''
     };
@@ -42,10 +45,10 @@ angular.module('greylock20152App')
       experimentService.createDocument({
         name: $scope.experiment.name,
         userId: $scope.currentUser._id,
-        description: '',
+        description: $scope.experiment.description,
         metrics: {
           heatmap2d: $scope.heatMap2D,
-          heatmap3d: $scope.heatMap2D,
+          heatmap3d: $scope.heatMap3D,
           trackGoal: $scope.trackGoal
         }
       }, function(experiment) { 

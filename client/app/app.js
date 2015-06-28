@@ -8,7 +8,8 @@ angular.module('greylock20152App', [
   'ui.router',
   'ui.bootstrap',
   'ngFileUpload',
-  'ui.select'
+  'ui.select',
+  'akoenig.deckgrid'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

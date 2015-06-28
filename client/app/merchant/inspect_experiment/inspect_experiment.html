@@ -1,1 +1,81 @@
-inspect
+<tabset justified="true">
+		<tab heading="Inspect">
+		<div class="container" style="width:90%;">
+			<div style="text-align:center;">
+				<h1>Experiment - {{experiment.name}}</h1>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<h2>Variations</h2>
+				<div class="row" ng-repeat="variation in variations">
+					<p>{{variation}}</p>
+				</div>
+			</div>
+		</div>
+		
+		
+	</tab>
+	<tab heading="Compare">
+		<div class="container" style="width:100%">
+			<div class="row">
+				<div class="col-md-6" style="margin-top:20px;">
+					<div style="text-align:center;"><h1>Variation A</h1></div>
+					
+					<form class="form-horizontal" style="margin-top:20px;">
+					  <div class="form-group">
+					    <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Select variation</label>
+					    <div class="col-sm-8">
+					      <ui-select ng-model="selectedVariations.a" ng-disabled="disabled" style="width: 300px;">
+				            <ui-select-match placeholder="Select a variation">{{$select.selected.name}}</ui-select-match>
+				            <ui-select-choices repeat="variation in variations | filter: $select.search">
+				              <span ng-bind-html="variation.name | highlight: $select.search"></span>
+				            </ui-select-choices>
+				          </ui-select>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Metric</label>
+					    <div class="col-sm-8">
+					      <ui-select ng-model="selectedMetrics.a" ng-disabled="disabled" style="width: 300px;">
+				            <ui-select-match placeholder="Select a metric">{{$select.selected.metricDescription}}</ui-select-match>
+				            <ui-select-choices repeat="metric in metrics | filter: $select.search">
+				              <span ng-bind-html="metric.metricDescription | highlight: $select.search"></span>
+				            </ui-select-choices>
+				          </ui-select>
+					    </div>
+					  </div>
+					</form>
+				</div>
+				<div class="col-md-6" style="margin-top:20px;">
+					<div style="text-align:center;"><h1>Variation B</h1></div>
+					<form class="form-horizontal" style="margin-top:20px;">
+					  <div class="form-group">
+					    <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Select variation</label>
+					    <div class="col-sm-8">
+					      <ui-select ng-model="selectedVariations.b" ng-disabled="disabled" style="width: 300px;">
+				            <ui-select-match placeholder="Select a variation">{{$select.selected.name}}</ui-select-match>
+				            <ui-select-choices repeat="variation in variations | filter: $select.search">
+				              <span ng-bind-html="variation.name | highlight: $select.search"></span>
+				            </ui-select-choices>
+				          </ui-select>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Metric</label>
+					    <div class="col-sm-8">
+					      <ui-select ng-model="selectedMetrics.b" ng-disabled="disabled" style="width: 300px;">
+				            <ui-select-match placeholder="Select a metric">{{$select.selected.metricDescription}}</ui-select-match>
+				            <ui-select-choices repeat="metric in metrics | filter: $select.search">
+				              <span ng-bind-html="metric.metricDescription | highlight: $select.search"></span>
+				            </ui-select-choices>
+				          </ui-select>
+					    </div>
+					  </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</tab>
+</tabset>

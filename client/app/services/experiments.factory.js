@@ -9,6 +9,10 @@ angular.module('greylock20152App')
       getDocument: {
       	method: 'GET',
         isArray: true
+      },
+      getExperiment: {
+        method: 'GET',
+        url: '/api/experiments/:id'
       }
     });
 

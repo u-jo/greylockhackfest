@@ -31,6 +31,9 @@ angular.module('greylock20152App')
         url: '/experiments/:id',
         templateUrl: 'app/merchant/inspect_experiment/inspect_experiment.html',
         controller: 'MerchantInspectExpCtrl',
+        params: {
+          id : ''
+        },
         authenticate: true
       });
   });
