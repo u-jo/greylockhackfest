@@ -29,7 +29,16 @@ exports.showFile = function(req, res) {
     if (!variation) { return res.send(404); }
     fs.readFile(variation.filename, function(err, data) {
       var zip = new JSZip(data);
-      return res.send(zip.generate({type: 'blob'}));
+      var dataFolders = zip.folder(/_Data\/$/);
+      if (_.isEmpty(dataFolders)) {
+        return res.json(500, {
+          message: 'could not inject data into resources folder'
+        });
+      }
+      var folder = dataFolders[0].name;
+      zip.file([folder, 'variation-info'].join('/'), JSON.stringify(variation));
+      var out = zip.generate({type: 'string'});
+      return res.send(new Buffer(out, 'binary'));
     });
   });
 };
