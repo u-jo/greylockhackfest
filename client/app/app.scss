@@ -45,6 +45,21 @@ body {
 .nav-tabs.nav-justified > li > a:hover {
 
 }
+.navbar.navbar-default {
+    font-size: 14px;
+}
+      
+.name-span {
+    color: #76EE00;
+}      
+
+.login-container {
+    width: 60%;
+  margin-top: 50px;
+  padding: 40px;
+  border: 1px solid #ccc;
+}
+
 
 .nav-tabs.nav-justified > .active > a:hover {
     border-bottom-color: #00BCD4;

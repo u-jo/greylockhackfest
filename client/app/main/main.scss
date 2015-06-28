@@ -30,7 +30,7 @@
 }
 
 .navbar.navbar-default {
-    background-color: #E91E63;
+    background-color: black;
     border-bottom: none;
     margin-bottom: 0px;
     a, li > a, li > p {
@@ -86,7 +86,7 @@ tabs.nav-justified > li > a, .nav-tabs.nav-justified > li > a {
     width: 100%;
 }
 
-a.a-card {
+.a-card {
     margin: 20px;
     border: 1px solid #ddd;
     .a-card-name {
@@ -101,10 +101,55 @@ a.a-card {
     }
 }
 
-a.a-card:hover {
+a.card:hover {
     text-decoration: none;
 }
 
 .a-card:hover {
     pointer: cursor;
+}
+
+.caption {
+    display: block;
+    z-index: 100;
+    position: relative;
+    top: 300px;
+    text-align: center;
+}
+.round-button {
+    border: 0;
+  border-radius: 1.5em;
+  font-size: 30px;
+  padding: 0.5em 1em;
+  border: 0px;  
+  color: white;
+ // text-shadow: 1px 1px #ccc;
+
+}
+
+.round-btn {
+    border-radius: 20px;
+    border: 0;
+}
+
+.tint {
+  position: relative;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  top: -400px;
+  cursor: pointer;
+  box-shadow: rgba(0,0,0,.2) 3px 5px 5px;
+}
+
+.tint:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0, 0.5);
+  transition: all .3s linear;
 }
