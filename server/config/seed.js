@@ -50,11 +50,3 @@ User.find({}).remove(function() {
     }
   );
 });
-
-Variation.find({}).remove(function() {
-
-});
-
-Experiment.find({}).remove(function() {
-
-});
