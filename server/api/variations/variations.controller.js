@@ -4,9 +4,13 @@ var _ = require('lodash');
 var Variation = require('./variation.model');
 var multiparty = require('multiparty');
 var JSZip = require('jszip');
+var fs = require('fs');
 
 exports.index = function(req, res) {
-  res.send(200);
+  Variation.find({experimentId: req.experiment._id}, function(err, variations) {
+    if (err) { return handleError(res, err); }
+    return res.json(200, variations);
+  });
 };
 
 exports.show = function(req, res) {
