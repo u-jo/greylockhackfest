@@ -36,6 +36,30 @@ function isAuthenticated() {
 }
 
 /**
+ * Attaches the user object to the request if authenticated
+ */
+function attachUser() {
+  return compose()
+    // Validate jwt
+    .use(function(req, res, next) {
+      // allow access_token to be passed through query parameter as well
+      if(req.query && req.query.hasOwnProperty('access_token')) {
+        req.headers.authorization = 'Bearer ' + req.query.access_token;
+      }
+      validateJwt(req, res, next);
+    })
+    // Attach user to request
+    .use(function(req, res, next) {
+      User.findById(req.user._id, function (err, user) {
+        if (err) return next(err);
+
+        req.user = user;
+        next();
+      });
+    });
+}
+
+/**
  * Checks if the user role meets the minimum requirements of the route
  */
 function hasRole(roleRequired) {
@@ -71,6 +95,8 @@ function setTokenCookie(req, res) {
 }
 
 exports.isAuthenticated = isAuthenticated;
+exports.attachUser = attachUser;
 exports.hasRole = hasRole;
 exports.signToken = signToken;
 exports.setTokenCookie = setTokenCookie;
+

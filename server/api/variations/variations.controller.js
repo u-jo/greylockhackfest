@@ -36,7 +36,18 @@ exports.showFile = function(req, res) {
         });
       }
       var folder = dataFolders[0].name;
-      zip.file([folder, 'variation-info'].join('/'), JSON.stringify(variation));
+      var genFilePath = function(filename) {
+        return [folder, filename].join('/')
+      };
+      zip.file(genFilePath('variation-info'), JSON.stringify(variation));
+      var userOwned = req.user && req.user._id.equals(variation.userId);
+      console.log('showFile', userOwned, variation.data);
+      console.log(req.user, variation.userId);
+      if (userOwned && variation.data) {
+        _.each(_.keys(variation.data), function(key) {
+          zip.file(genFilePath(key), JSON.stringify(variation.data[key]))
+        });
+      }
       var out = zip.generate({type: 'string'});
       return res.send(new Buffer(out, 'binary'));
     });
